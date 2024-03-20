@@ -142,3 +142,10 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 # Telegram
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'nik.porshennikov123@gmail.com'
+EMAIL_HOST_PASSWORD = 'uvpe svut cxvp eejd'

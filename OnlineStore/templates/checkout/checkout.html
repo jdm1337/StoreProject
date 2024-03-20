@@ -21,7 +21,7 @@
   <section>
   <div class="row">
     <div class="col-md-8" style="width: 60%; padding-right: 20px;">
-      <div><h2>Доставка</h2></div>
+      <div><h2>Оформление заказа</h2></div>
       {% for field in form %}
         {% if field.name != 'payment_method' %}
           <div class="form-group">
@@ -79,9 +79,9 @@
     <div class="actions" style="text-align: justify; margin-top: 100px;">
       <input type="reset" value="Сбросить" style="float: left;">
       {% if cart.items.exists %}
-        <input type="submit" value="Оставить заказ" class="primary" style="float: right;">
+        <input type="submit" value="Оформить заказ" class="primary" style="float: right;">
       {% else %}
-        <input type="submit" value="Оставить заказ" class="primary disabled" style="float: right;">
+        <input type="submit" value="Оформить заказ" class="primary disabled" style="float: right;">
       {% endif %}
     </div>
   </div>

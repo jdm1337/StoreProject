@@ -1,7 +1,25 @@
 <div id="overlay" class="overlay"></div>
-<div id="online-payment-info" class="hidden">
+<div id="online-payment-info" class="payment-modal hidden">
   <button id="close-btn">Закрыть</button>
-  <h2 style="color: red;">НЕ ПЛАТИТЕ ЭТО ШУТКА</h2>
-  <div id="paypal-button-container"></div>
-  <h2 style="color: red;">НЕ ПЛАТИТЕ ЭТО ШУТКА</h2>
+  <form id="payment-form" class="payment-form">
+    <h2>Оплата картой</h2>
+    <div class="form-group">
+      <label for="card-number">Номер карты</label>
+      <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000" required>
+    </div>
+    <div class="form-group">
+      <label for="card-name">Имя владельца</label>
+      <input type="text" id="card-name" name="card-name" placeholder="IVAN IVANOV" required>
+    </div>
+    <div class="form-group">
+      <label for="card-expiration-date">Срок действия</label>
+      <input type="text" id="card-expiration-date" name="card-expiration-date" placeholder="MM/YY" required>
+    </div>
+    <div class="form-group">
+      <label for="card-cvv">CVV</label>
+      <input type="text" id="card-cvv" name="card-cvv" placeholder="123" required>
+    </div>
+    <button type="submit" class="submit-btn">Оплатить</button>
+  </form>
 </div>
+

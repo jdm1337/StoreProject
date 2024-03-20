@@ -2,34 +2,55 @@
 
 {% block content %}
 {% load static %}
-<h1>OnlineStore: Онлайн-магазин для всех ваших потребностей<br /></h1>
-<p>Мой проект - это современный интернет-магазин, который был разработан с использованием передовых технологий веб-разработки. Использовался язык программирования Python и его фреймворк Django для создания серверной части сайта.</p>
-<p>Для создания пользовательского интерфейса были использованы языки HTML, CSS и JavaScript. Большее количество шаблонов было взято с <a href="http://html5up.net">HTML5 UP</a></p>
-<p>Я также использовал SQLite для хранения данных, таких как информация о продуктах и заказах.</p>
+<h1>AmaOzon: Маркетплейс нового поколения</h1>
+
+<!-- Фильтрация и Сортировка -->
+<form method="get" style="margin-bottom: 20px;">
+    <label for="category">Категория:</label>
+    <select name="category" id="category" onchange="this.form.submit()">
+        <option value="">Все категории</option>
+        {% for tag in tags %}
+        <option value="{{ tag.slug }}" {% if request.GET.category == tag.slug %}selected{% endif %}>{{ tag.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="sort_by">Сортировка:</label>
+    <select name="sort_by" id="sort_by" onchange="this.form.submit()">
+        <option value="">Стандартно</option>
+        <option value="price_asc" {% if request.GET.sort_by == 'price_asc' %}selected{% endif %}>Цена по возрастанию</option>
+        <option value="price_desc" {% if request.GET.sort_by == 'price_desc' %}selected{% endif %}>Цена по убыванию</option>
+    </select>
+</form>
+
+<!-- Список товаров -->
 <section class="tiles">
     {% for item in page_obj %}
-    <article class="style{{ range|random }}">
+    <article>
+        <h2 style="font-size: medium">{{ item.title }}</h2>
+        <h3 style="font-size: medium">Цена: {{ item.price }}</h3>
         <span class="image">
-        {% if item.image %}
-            <img src="{{ item.image.url }}" alt="" style="width: 353px; height: 326px;" />
-        {% else %}
-            <img src="{% static "images/pic01.jpg" %}" alt="" />
-        {% endif %}
+            {% if item.image %}
+                <img src="{{ item.image.url }}" alt="" style="width: 353px; height: 326px;" />
+            {% else %}
+                <img src="{% static 'images/pic01.jpg' %}" alt="" />
+            {% endif %}
         </span>
         <a href="{% url 'store:item_details' item.slug %}">
-            <div class="tag">
-                <object> 
-                    {% for tag in item.tags.all %}
-                        <a href="{% url 'store:tag_details' tag.slug %}" style="color: white">{{ tag }}</a>
-                        {% if not forloop.last %},{% endif %}
-                    {% endfor %}
-                </object><br />
-            </div>
-            <h2>{{ item.title }}</h2>
             <div class="content">
                 <p>{{ item.description|truncatechars:150 }}</p>
             </div>
         </a>
+        <div class="tag">
+            Категории:
+            <object>
+                {% for tag in item.tags.all %}
+                    <a href="{% url 'store:tag_details' tag.slug %}" style="color: black">{{ tag }}</a>
+                    {% if not forloop.last %},{% endif %}
+                {% endfor %}
+            </object><br />
+        </div>
+    <a href="{% url 'cart:add_to_cart' item.slug %}" class="button small" style="margin-top:10px;">
+        Добавить в корзину</a>
     </article>
     {% endfor %}
 </section>

@@ -6,8 +6,23 @@ from .paginator import paginator
 
 def store(request):
     items = Item.objects.filter(is_available=True)
+    category_slug = request.GET.get('category')
+    sort_by = request.GET.get('sort_by')
+
+    if category_slug:
+        items = items.filter(tags__slug=category_slug)
+
+    if sort_by:
+        if sort_by == 'price_asc':
+            items = items.order_by('price')
+        elif sort_by == 'price_desc':
+            items = items.order_by('-price')
+
+    tags = ItemTag.objects.all()  # Получаем все теги
+
     context = {
         'page_obj': paginator(request, items, 9),
+        'tags': tags,  # Передаём теги в контекст
         'range': [*range(1, 7)],  # For random css styles
     }
 

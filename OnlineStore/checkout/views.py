@@ -6,6 +6,9 @@ from cart.views import Cart
 from .forms import OrderCreateForm
 from .models import Order, OrderItem, ShippingAddress
 
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 @login_required
 def checkout(request):
@@ -14,10 +17,18 @@ def checkout(request):
     """
     cart = Cart.objects.get(user=request.user)
     form = OrderCreateForm()
+
+    user = request.user
+    initial_data = {
+        'first_name': user.first_name,
+        'last_name': user.last_name,
+        'email': user.email,
+    }
+    # Создаем экземпляр формы с предварительно заполненными данными
+    form = OrderCreateForm(initial=initial_data)
+
     context = {'cart': cart, 'form': form}
-
     return render(request, 'checkout/checkout.html', context)
-
 
 @login_required
 def thank_you(request, order_id):
@@ -64,6 +75,9 @@ def create_order(request):
                 )
 
             cart.clear()
+
+            send_order_email(order.id, form.cleaned_data['email'])
+
             return redirect('checkout:thank_you', order_id=order.id)
     else:
         form = OrderCreateForm()
@@ -71,3 +85,10 @@ def create_order(request):
         request, 'Форма не была корректно обработана, введите данные еще раз')
     context = {'form': form, 'cart': cart}
     return render(request, 'checkout/checkout.html', context)
+
+def send_order_email(order_id, user_email):
+    subject = 'Подтверждение заказа №{}'.format(order_id)
+    message = 'Спасибо за ваш заказ! Ваш заказ с номером {} был успешно создан.'.format(order_id)
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [user_email]
+    send_mail(subject, message, email_from, recipient_list)

@@ -32,7 +32,6 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-
 ol, ul {
 	list-style: none;
 }
@@ -152,7 +151,7 @@ input, select, textarea {
 /* Type */
 
 	body, input, select, textarea {
-		color: #585858;
+		color: black;
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 16pt;
 		font-weight: 300;
@@ -181,7 +180,7 @@ input, select, textarea {
 		-ms-transition: border-bottom-color 0.2s ease, color 0.2s ease;
 		transition: border-bottom-color 0.2s ease, color 0.2s ease;
 		text-decoration: none;
-		color: #585858;
+		color: black;
 		border-bottom: dotted 1px rgba(88, 88, 88, 0.5);
 	}
 
@@ -2261,7 +2260,7 @@ input, select, textarea {
 		input[type="checkbox"] + label,
 		input[type="radio"] + label {
 			text-decoration: none;
-			color: #585858;
+			color: black;
 			cursor: pointer;
 			display: inline-block;
 			font-size: 1em;
@@ -2303,8 +2302,8 @@ input, select, textarea {
 
 		input[type="checkbox"]:checked + label:before,
 		input[type="radio"]:checked + label:before {
-			background: #585858;
-			border-color: #585858;
+			background: black;
+			border-color: black;
 			color: #ffffff;
 			content: '\f00c';
 		}
@@ -2491,8 +2490,8 @@ input, select, textarea {
 		background-color: transparent;
 		border-radius: 4px;
 		border: 0;
-		box-shadow: inset 0 0 0 2px #585858;
-		color: #585858 !important;
+		box-shadow: inset 0 0 0 2px black;
+		color: black !important;
 		cursor: pointer;
 		display: inline-block;
 		font-size: 0.8em;
@@ -2564,7 +2563,7 @@ input, select, textarea {
 		button.primary,
 		.button.primary {
 			box-shadow: none;
-			background-color: #585858;
+			background-color: black;
 			color: #ffffff !important;
 		}
 
@@ -2618,8 +2617,9 @@ input, select, textarea {
 			-ms-transition: -ms-transform 0.5s ease, opacity 0.5s ease;
 			transition: transform 0.5s ease, opacity 0.5s ease;
 			position: relative;
-			width: calc(33.33333% - 2.5em);
+			width: calc(25% - 2.5em);
 			margin: 2.5em 0 0 2.5em;
+			border: solid;
 		}
 
 			.tiles article > .image {
@@ -2866,6 +2866,7 @@ input, select, textarea {
 
 	#header {
 		padding: 8em 0 0.1em 0 ;
+		color: black;
 	}
 
 		#header .logo {
@@ -2897,7 +2898,7 @@ input, select, textarea {
 
 		#header nav {
 			position: fixed;
-			right: 2em;
+			left: 2em; /* Замените right: 2em на left: 2em */
 			top: 2em;
 			z-index: 10000;
 		}
@@ -3009,22 +3010,22 @@ input, select, textarea {
 	}
 
 	#menu {
-		-moz-transform: translateX(22em);
-		-webkit-transform: translateX(22em);
-		-ms-transform: translateX(22em);
-		transform: translateX(22em);
+		-moz-transform: translateX(-22em); /* Замените translateX(22em) на translateX(-22em) */
+		-webkit-transform: translateX(-22em);
+		-ms-transform: translateX(-22em);
+		transform: translateX(-22em);
 		-moz-transition: -moz-transform 0.45s ease, visibility 0.45s;
 		-webkit-transition: -webkit-transform 0.45s ease, visibility 0.45s;
 		-ms-transition: -ms-transform 0.45s ease, visibility 0.45s;
 		transition: transform 0.45s ease, visibility 0.45s;
 		position: fixed;
 		top: 0;
-		right: 0;
+		left: 0; /* Замените right: 0 на left: 0 */
 		width: 22em;
 		max-width: 80%;
 		height: 100%;
 		-webkit-overflow-scrolling: touch;
-		background: #585858;
+		background: black;
 		color: #ffffff;
 		cursor: default;
 		visibility: hidden;
@@ -3084,7 +3085,7 @@ input, select, textarea {
 			display: block;
 			position: absolute;
 			top: 2em;
-			left: -6em;
+			right: -6em; /* Замените left: -6em на right: -6em */
 			width: 6em;
 			text-indent: 6em;
 			height: 3em;
@@ -3202,7 +3203,7 @@ input, select, textarea {
 
 	#footer {
 		padding: 5em 0 6em 0 ;
-		background-color: #f6f6f6;
+		background-color: #585858;
 	}
 
 		#footer > .inner {
